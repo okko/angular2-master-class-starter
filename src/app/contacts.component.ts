@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ContactsHeaderComponent } from './contacts-header';
 
 @Component({
   selector: 'trm-contacts-app',
