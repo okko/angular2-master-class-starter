@@ -9,7 +9,7 @@ import { Contact } from '../models/contact';
   styleUrls: ['contacts-detail.component.css']
 })
 export class ContactsDetailComponent implements OnInit {
-  private contact: any;// Contact
+  private contact: Contact;// Contact
 
   constructor(private route: ActivatedRoute, private contactsService: ContactsService) {
   }

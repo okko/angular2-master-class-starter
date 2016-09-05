@@ -9,7 +9,7 @@ import { Observable } from 'rxjs/Rx';;
   styleUrls: ['contacts-list.component.css']
 })
 export class ContactsListComponent implements OnInit {
-  contacts: Observable<any>;
+  contacts: Array<Contact>;
 
   constructor(private contactsService: ContactsService) {
     contactsService.getContacts()
