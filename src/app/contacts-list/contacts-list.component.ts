@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Contact } from '../models/contact';
 import { ContactsService } from '../contacts.service';
+import { Contact } from '../models/contact';
 
 @Component({
-  providers: [ContactsService],
   selector: 'trm-contacts-list',
   templateUrl: 'contacts-list.component.html',
   styleUrls: ['contacts-list.component.css']
