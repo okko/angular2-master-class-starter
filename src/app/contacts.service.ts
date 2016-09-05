@@ -22,4 +22,9 @@ export class ContactsService {
       .map(data => data.item); //  this.getContacts().find(contact => contact.id == id);
   }
 
+  updateContact(contact: Contact) {
+    let url = API_ENDPOINT + '/' + `${contact.id}`;
+    return this.http.put(url, contact);
+  }
+
 }
