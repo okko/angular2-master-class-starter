@@ -1,19 +1,25 @@
+import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { Contact } from './models/contact';
-import { CONTACT_DATA } from './data/contact-data';
+
+const API_ENDPOINT = 'http://localhost:4201/api/contacts';
 
 @Injectable()
 export class ContactsService {
-  private contacts: Array<Contact> = CONTACT_DATA;
-
-  constructor() { }
+  constructor(private http: Http) {
+  }
 
   getContacts() {
-    return this.contacts;
+    return this.http.get(API_ENDPOINT)
+      .map(res => res.json())
+      .map(data => data.items )
+    ;
   }
 
   getContact(id: number | string) {
-    return this.contacts.find(contact => contact.id == id);
+    return this.http.get(API_ENDPOINT + '/' + id)
+      .map(res => res.json())
+      .map(data => data.item); //  this.getContacts().find(contact => contact.id == id);
   }
 
 }

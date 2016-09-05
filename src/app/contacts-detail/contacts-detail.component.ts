@@ -9,14 +9,14 @@ import { Contact } from '../models/contact';
   styleUrls: ['contacts-detail.component.css']
 })
 export class ContactsDetailComponent implements OnInit {
-  private contact: Contact;
+  private contact: any;// Contact
 
-  // Create a contact property in ContactsDetailComponent and use ActivatedRoute and ContactsService to retrieve the requested contact
-
-  constructor(private route: ActivatedRoute, private contactsService: ContactsService) { }
+  constructor(private route: ActivatedRoute, private contactsService: ContactsService) {
+  }
 
   ngOnInit() {
-    this.contact = this.contactsService.getContact(this.route.snapshot.params['id']);
+    this.contactsService.getContact(this.route.snapshot.params['id'])
+    .subscribe(contact => this.contact = contact);
   }
 
 }
