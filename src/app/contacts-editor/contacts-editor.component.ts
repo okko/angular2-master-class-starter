@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ContactsService } from '../contacts.service';
+import { EventBusService } from '../event-bus.service';
+
 import { Contact } from '../models/contact';
 import { Response } from '@angular/http';
 
@@ -15,12 +17,15 @@ export class ContactsEditorComponent implements OnInit {
   // private contact: any;// Contact
   private contact: Contact = <Contact>{ address: {}};
 
-  constructor(private route: ActivatedRoute, private contactsService: ContactsService, private router: Router) {
+  constructor(private route: ActivatedRoute, private contactsService: ContactsService, private router: Router, private eventBusService: EventBusService) {
   }
 
   ngOnInit() {
     this.contactsService.getContact(this.route.snapshot.params['id'])
-    .subscribe(contact => this.contact = contact);
+    .subscribe(contact => {
+      this.contact = contact;
+      this.eventBusService.emit('appTitleChange', `Editing: ${contact.name}`);
+    });
   }
 
   cancel(contact: Contact) {
