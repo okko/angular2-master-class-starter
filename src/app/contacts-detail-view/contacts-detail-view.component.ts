@@ -21,6 +21,14 @@ export class ContactsDetailViewComponent implements OnInit {
       this.contact = contact;
       this.eventBusService.emit('appTitleChange', contact.name);
     });
+
+    this.activatedRoute.params.subscribe(params => {
+      this.contactsService.getContact(params['id'])
+      .subscribe(contact => {
+        this.contact = contact;
+        this.eventBusService.emit('appTitleChange', contact.name);
+      });
+    });
   }
 
   navigateToEditor() {

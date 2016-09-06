@@ -11,7 +11,6 @@ export class ContactsDetailComponent {
   @Output() edit = new EventEmitter<Contact>();
   @Output() back = new EventEmitter<Contact>();
 
-
   constructor() {
   }
 
