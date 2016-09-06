@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Contact } from './models/contact';
 
 const API_ENDPOINT = 'http://localhost:4201/api/contacts';
+const API_ENDPOINT_SEARCH = 'http://localhost:4201/api/search';
+
 
 @Injectable()
 export class ContactsService {
@@ -25,6 +27,14 @@ export class ContactsService {
   updateContact(contact: Contact) {
     let url = API_ENDPOINT + '/' + `${contact.id}`;
     return this.http.put(url, contact);
+  }
+
+  search(term: string) {
+    // todo construct URL properly
+    return this.http.get(API_ENDPOINT_SEARCH + `?text=${term}`)
+      .map(res => res.json())
+      .map(data => data.items )
+    ;
   }
 
 }

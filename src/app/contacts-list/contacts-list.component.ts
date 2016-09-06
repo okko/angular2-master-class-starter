@@ -15,6 +15,10 @@ export class ContactsListComponent implements OnInit {
     this.contacts = contactsService.getContacts();
   }
 
+  searchInput(event: any) {
+    this.contacts = this.contactsService.search(event.target.value);
+  }
+
   ngOnInit() {
     // this.contactsService.getContacts().subscribe();
   }
